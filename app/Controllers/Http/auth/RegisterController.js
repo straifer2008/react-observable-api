@@ -8,17 +8,17 @@ const randomstring = require("randomstring");
 class RegisterController {
   async register({ request, response }) {
     const email = request.input("email", "");
-    const password = request.input("password", "");
+    const password = request.input("password", "")
 
     const rules = {
       email: "required|email|unique:users,email",
       password: "required"
     };
 
-    const validation = await validate(request.all(), rules);
+    const validation = await validate(request.all(), rules)
 
     if (validation.fails()) {
-        return response.status(400).send(validation.messages());
+        return response.status(400).send(validation.messages())
     }
 
     const user = await User.create({

@@ -20,3 +20,5 @@ Route.on('/').render('welcome')
 
 Route.post('register', 'auth/RegisterController.register')
 Route.post('confirmEmail', 'auth/RegisterController.confirmEmail')
+Route.post('login', 'auth/LoginController.login')
+Route.get('logout', 'auth/LoginController.logout').middleware(['auth'])
