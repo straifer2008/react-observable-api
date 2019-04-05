@@ -30,6 +30,7 @@ class LoginController {
 
       if (passwordVerified) {
         const token = await auth.generate(user)
+        const permissions = await user.getPermissions()
 
         return response.status(200).send({
           user: {
@@ -39,10 +40,11 @@ class LoginController {
             created: user.created_at,
             updated: user.updated_at
           },
-          token
+          token,
+          permissions
         })
       } else {
-        return response.status(400).send({message: 'Password is not valid'});
+        return response.status(412).send({message: 'Password is not valid'});
       }
     }
   }

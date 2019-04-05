@@ -27,6 +27,7 @@ class RegisterController {
       token: randomstring.generate({ length: 25 }),
       registrationToken: randomstring.generate({ length: 25 })
     });
+    user.roles().attach([2])
 
     await Mail.send("emails.confirm_email", user.toJSON(), message => {
       message
